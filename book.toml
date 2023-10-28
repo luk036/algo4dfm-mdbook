@@ -1,0 +1,15 @@
+[book]
+authors = ["Wai-Shing Luk"]
+language = "en"
+multilingual = false
+src = "src"
+title = "Algorithms for Design-for-Manufacturability"
+
+[output.html]
+# …
+additional-css = ["katex.min.css"]
+
+[preprocessor.katex]
+after = ["links"]
+no-css = true
+include-src = true

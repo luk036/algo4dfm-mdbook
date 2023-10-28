@@ -1,0 +1,659 @@
+<!DOCTYPE HTML>
+<html lang="en" class="light" dir="ltr">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Lecture 2 - Algorithms for Design-for-Manufacturability</title>
+
+
+        <!-- Custom HTML head -->
+        
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff">
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="katex.min.css">
+
+    </head>
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('light')
+            html.classList.add(theme);
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
+        </script>
+
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
+            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="lec00.html"><strong aria-hidden="true">1.</strong> Lecture 0</a></li><li class="chapter-item expanded "><a href="lec01.html"><strong aria-hidden="true">2.</strong> Lecture 1</a></li><li class="chapter-item expanded "><a href="lec02.html" class="active"><strong aria-hidden="true">3.</strong> Lecture 2</a></li><li class="chapter-item expanded "><a href="lec03.html"><strong aria-hidden="true">4.</strong> Lecture 3</a></li><li class="chapter-item expanded "><a href="lec04.html"><strong aria-hidden="true">5.</strong> Lecture 4</a></li><li class="chapter-item expanded "><a href="lec05.html"><strong aria-hidden="true">6.</strong> Lecture 5</a></li><li class="chapter-item expanded "><a href="lec06.html"><strong aria-hidden="true">7.</strong> Lecture 6</a></li><li class="chapter-item expanded "><a href="lec07a.html"><strong aria-hidden="true">8.</strong> Lecture 7a</a></li><li class="chapter-item expanded "><a href="lec07b.html"><strong aria-hidden="true">9.</strong> Lecture 7b</a></li><li class="chapter-item expanded "><a href="lec08.html"><strong aria-hidden="true">10.</strong> Lecture 8</a></li><li class="chapter-item expanded "><a href="lec09.html"><strong aria-hidden="true">11.</strong> Lecture 9</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
+                    <div class="left-buttons">
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </label>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Algorithms for Design-for-Manufacturability</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="lecture-2a-open-source-software-development-flow"><a class="header" href="#lecture-2a-open-source-software-development-flow">Lecture 2a: Open-Source Software Development Flow</a></h1>
+<h2 id="-messages"><a class="header" href="#-messages">💬 Messages</a></h2>
+<ul>
+<li>About 99% projects fail.</li>
+<li>Software is &quot;soft&quot;; Hardware is &quot;hard&quot;</li>
+<li>Automation is hard</li>
+<li>Nightly build concept (Microsoft)</li>
+<li>Agile software development</li>
+<li>Pair programming</li>
+<li>Extreme programming</li>
+<li>Opensource projects - Continuous Integration</li>
+</ul>
+<h2 id="platforms"><a class="header" href="#platforms">Platforms</a></h2>
+<ul>
+<li>https://github.com</li>
+<li>gitpod.io - ☁️ cloud base</li>
+<li>Github's Codespaces - ☁️ cloud base</li>
+<li>Lubuntu</li>
+<li>Windows - MSVC++</li>
+<li>FydeOS (ChromeOS) - g++-13</li>
+<li>Android's Termux - clang-17</li>
+</ul>
+<h2 id="open-source-work-flow-python"><a class="header" href="#open-source-work-flow-python">Open-source Work Flow (Python)</a></h2>
+<p><img src="figs/python-flow.svg" alt="img" /></p>
+<h2 id="open-source-work-flow-c"><a class="header" href="#open-source-work-flow-c">Open-source Work Flow (C++)</a></h2>
+<p><img src="figs/cpp-flow.svg" alt="img" /></p>
+<h2 id="pull-request"><a class="header" href="#pull-request">Pull Request</a></h2>
+<p><img src="figs/pull-request.svg" alt="img" /></p>
+<h2 id="github-git"><a class="header" href="#github-git">GitHub, Git</a></h2>
+<pre><code class="language-{.bash}">git clone https://github.com/luk036/csdigit
+cd csdigit
+(edit)
+git status
+git diff
+git diff README.md
+git pull
+git add .
+git commit -m &quot;message&quot;
+git push
+git tag
+git branch # list all branches
+git branch develop # create a new branch
+git switch develop
+git switch master
+</code></pre>
+<h2 id="github-gh"><a class="header" href="#github-gh">GitHub, gh</a></h2>
+<pre><code class="language-{.bash}">gh repo create csdigit --public
+gh repo clone csdigit
+gh run list
+gh run view
+gh release list
+gh release create
+gh issue list
+gh issue create
+gh search repos digraphx
+</code></pre>
+<h2 id="python"><a class="header" href="#python">Python</a></h2>
+<ul>
+<li>Create a new porject</li>
+</ul>
+<pre><code class="language-{.bash}">pip install pyscaffold[all]
+putup -i --markdown --github-actions csdigit
+</code></pre>
+<ul>
+<li>⚙️ Setup</li>
+</ul>
+<pre><code class="language-{.bash}">cd csdigit
+pip install -e .
+pip install -r requirements.txt
+</code></pre>
+<ul>
+<li>🧪 Unit Testing</li>
+</ul>
+<pre><code class="language-{.bash}">pytest
+pytest --doctest-modules src
+</code></pre>
+<ul>
+<li>⛺ Code Coverage</li>
+</ul>
+<pre><code class="language-{.bash}">pytest --cov=src/csdigit
+</code></pre>
+<h2 id="python-1"><a class="header" href="#python-1">Python</a></h2>
+<ul>
+<li>🪄 Formatting and static check</li>
+</ul>
+<pre><code class="language-{.bash}">pip install pre-commit
+pre-commit run --all-files
+</code></pre>
+<ul>
+<li>📝 Documentation</li>
+</ul>
+<pre><code class="language-{.bash}">pip install -r docs/requirements.txt
+cd docs
+make html
+python -m http.server
+</code></pre>
+<ul>
+<li>📊 Benchmarking</li>
+</ul>
+<pre><code class="language-{.bash}">pytest benches/test_bench.py
+</code></pre>
+<h2 id="rust"><a class="header" href="#rust">Rust</a></h2>
+<ul>
+<li>Create a new project</li>
+</ul>
+<p>.font-sm.mb-xs[</p>
+<pre><code class="language-{.bash}">cargo install cargo-generate
+cargo generate -o --init --git https://github.com/rust-github/template.git
+</code></pre>
+<p>]</p>
+<ul>
+<li>⚙️ Setup</li>
+</ul>
+<pre><code class="language-{.bash}">cd csd-rs
+cargo build
+</code></pre>
+<ul>
+<li>🧪 Unit Testing</li>
+</ul>
+<pre><code class="language-{.bash}">cargo test
+cargo test --lib
+cargo test --doc
+</code></pre>
+<ul>
+<li>⛺ Code Coverage</li>
+</ul>
+<pre><code class="language-{.bash}">cargo tarpaulin (Windows)
+</code></pre>
+<h2 id="rust-1"><a class="header" href="#rust-1">Rust</a></h2>
+<ul>
+<li>🪄 Formatting and static check</li>
+</ul>
+<pre><code class="language-{.bash}">cargo fmt
+cargo clippy
+cargo clippy --fix
+</code></pre>
+<ul>
+<li>📝 Documentation</li>
+</ul>
+<pre><code class="language-{.bash}">cargo doc
+cd target/doc
+python -m http.server
+</code></pre>
+<ul>
+<li>📊 Benchmarking</li>
+</ul>
+<pre><code class="language-{.bash}">cargo bench
+</code></pre>
+<h2 id="c-cmake--cpm"><a class="header" href="#c-cmake--cpm">C++ (CMake + CPM)</a></h2>
+<ul>
+<li>
+<p>Create a new project</p>
+<p>Use GitHub's ModernCppStarter template,</p>
+</li>
+<li>
+<p>⚙️ Setup</p>
+</li>
+</ul>
+<pre><code class="language-{.bash}">cd csd-cpp
+cmake -Sall -Bbuild -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+</code></pre>
+<ul>
+<li>🧪 Unit Testing</li>
+</ul>
+<pre><code class="language-{.bash}">cmake --build build --target test
+</code></pre>
+<ul>
+<li>⛺ Code Coverage</li>
+</ul>
+<pre><code class="language-{.bash}">??
+</code></pre>
+<h2 id="c-cmake--cpm-1"><a class="header" href="#c-cmake--cpm-1">C++ (CMake + CPM)</a></h2>
+<ul>
+<li>🪄 Formatting and static check</li>
+</ul>
+<pre><code class="language-{.bash}">pip install cmake-format clang-format
+cmake -Sall -Bbuild -DCMAKE_BUILD_TYPE=Release
+cmake --build build --target fix-format
+</code></pre>
+<ul>
+<li>📝 Documentation</li>
+</ul>
+<pre><code class="language-{.bash}">cmake --build build --target GenerateDocs
+</code></pre>
+<ul>
+<li>📊 Benchmarking</li>
+</ul>
+<pre><code class="language-{.bash}">./build/bench/BM_switch
+</code></pre>
+<h2 id="c-xmake"><a class="header" href="#c-xmake">C++ (XMake)</a></h2>
+<ul>
+<li>Create a new project</li>
+</ul>
+<pre><code class="language-{.bash}">xmake create -t static lds-cpp
+xmake create -t console csd-cpp
+</code></pre>
+<ul>
+<li>⚙️ Setup</li>
+</ul>
+<pre><code class="language-{.bash}">xmake f -m debug
+xmake
+</code></pre>
+<ul>
+<li>🧪 Unit Testing</li>
+</ul>
+<pre><code class="language-{.bash}">xmake run test_csd
+</code></pre>
+<ul>
+<li>⛺ Code Coverage</li>
+</ul>
+<pre><code class="language-{.bash}">??
+</code></pre>
+<h2 id="c-xmake-1"><a class="header" href="#c-xmake-1">C++ (XMake)</a></h2>
+<ul>
+<li>🪄 Formatting and static check</li>
+</ul>
+<pre><code class="language-{.bash}">xmake format
+</code></pre>
+<ul>
+<li>📝 Documentation</li>
+</ul>
+<pre><code class="language-{.bash}">xmake doxygen
+</code></pre>
+<ul>
+<li>📊 Benchmarking</li>
+</ul>
+<pre><code class="language-{.bash}">xmake run test_bench
+</code></pre>
+<h1 id="lecture-2b-programming-in-the-age-of-ai-"><a class="header" href="#lecture-2b-programming-in-the-age-of-ai-">Lecture 2b: Programming in the Age of AI 🤖</a></h1>
+<h2 id="coding-tips-"><a class="header" href="#coding-tips-">Coding Tips 💡</a></h2>
+<ul>
+<li>Test, test, test!!!</li>
+<li>Write cleaner code</li>
+<li>Refactor repeat codes</li>
+<li>Object oriented programming</li>
+<li>Generic programming</li>
+<li>Design Pattern</li>
+<li>Coroutine is your friend</li>
+<li>Learn from good codes, not bad ones.</li>
+<li>The last rescue: Google search.</li>
+</ul>
+<h2 id="code-generation"><a class="header" href="#code-generation">Code generation</a></h2>
+<ul>
+<li>AWS CodeWhisperer (VSCode's extension)
+<ul>
+<li>generate testing code</li>
+</ul>
+</li>
+</ul>
+<h2 id="documentation-generation"><a class="header" href="#documentation-generation">Documentation generation</a></h2>
+<p>Mintlify (VSCode's extension)</p>
+<ul>
+<li>Naming</li>
+<li>a, i, p, n ❌</li>
+<li>A x = b</li>
+<li>x: unknown, x_axis</li>
+<li>x, y, z</li>
+</ul>
+<h2 id="use-better-variable-names"><a class="header" href="#use-better-variable-names">Use better variable names</a></h2>
+<ul>
+<li>p: point, polygon, polynomial, prev</li>
+<li>t: time, target, temp</li>
+<li>c: cost, cycle, coefficient</li>
+<li>d: distance, distribution</li>
+<li>e: edge</li>
+<li>v: vertex</li>
+<li>u, v, w: vertex1, vertex2</li>
+<li>i: index</li>
+<li>i, j: row, col</li>
+<li>i, j, k</li>
+<li>l, m: line1, line2</li>
+<li>n: dimension, node, next</li>
+<li>n, m: ndim, mdim</li>
+<li>w: weight, frequence (omega)</li>
+</ul>
+<h2 id="-performance-tips-"><a class="header" href="#-performance-tips-">🚀 Performance Tips 💡</a></h2>
+<ul>
+<li>Avoid string comparison</li>
+<li>Use sentinel</li>
+<li>Use cheaper measure, avoid <code>sqrt()</code>, <code>sin()</code>, <code>cos()</code></li>
+<li>Lazy evaluation</li>
+<li>Table lookup</li>
+<li>Avoid sequence search:
+<ul>
+<li>Backward pointers</li>
+<li>Hash Table/Dictionary/Map</li>
+</ul>
+</li>
+</ul>
+<h2 id="avoid-string-comparison"><a class="header" href="#avoid-string-comparison">Avoid string comparison</a></h2>
+<p>.pull-left[</p>
+<p>Bad 👎:</p>
+<pre><code class="language-{.python}">if pin == &quot;input&quot;:
+    # ...
+elif pin == &quot;output&quot;:
+    # ...
+elif pin == &quot;in_out&quot;:
+    # ...
+elif pin == &quot;dont_care&quot;:
+    # ...
+else:
+    # ...
+</code></pre>
+<p>]</p>
+<p>.pull-right[</p>
+<p>Better ⚡:</p>
+<pre><code class="language-{.python}">pin_type = dict({&quot;input&quot;:0},
+  {&quot;output&quot;:1}, {&quot;in_out&quot;:2},
+  {&quot;dont_care&quot;:3})
+...
+id = pin_type.get(pin, -1)
+if id == 0:
+    # ...
+elif id == 1:
+    # ...
+elif id == 2:
+    # ...
+elif id == 3:
+    # ...
+else:
+    # ...
+</code></pre>
+<p>]</p>
+<h2 id="use-sentinel"><a class="header" href="#use-sentinel">Use Sentinel</a></h2>
+<p>.pull-left[</p>
+<p>Bad 👎:</p>
+<p>.font-sm.mb-xs[</p>
+<pre><code class="language-{.python}">max = 0
+bckt = [Dllist() for _ in range(high)]
+# ...
+def popleft():
+    res = bckt[max].popleft()
+    while max &gt;= 0 and bckt[max].empty():
+        max -= 1
+    return res
+</code></pre>
+<p>]</p>
+<p>] .pull-right[</p>
+<p>Better ⚡:</p>
+<p>.font-sm.mb-xs[</p>
+<pre><code class="language-{.python}">max = 0
+sentinel = Dllink()
+bckt = [Dllist() for _ in range(high+1)]
+bckt[0].append(sentinel)  # sentinel
+# ...
+def popleft():
+    res = bckt[max].popleft()
+    while bckt[max].empty():
+        max -= 1
+    return res
+# Saved a boundary check `max &gt;= 0`
+</code></pre>
+<p>]</p>
+<p>]</p>
+<h2 id="use-cheaper-measure"><a class="header" href="#use-cheaper-measure">Use cheaper measure</a></h2>
+<p>.pull-left[</p>
+<p>Bad 👎:</p>
+<pre><code class="language-{.python}">mind = 10000
+maxd = 0
+for u, v in G.edges():
+    t = vec[u] - vec[v]
+*   d = sqrt(t.dot(t))
+    if mind &gt; d: mind = d
+    if maxd &lt; d: maxd = d
+*return maxd - mind
+</code></pre>
+<p>] .pull-right[</p>
+<p>Better ⚡:</p>
+<pre><code class="language-{.python}">minq = 10000
+maxq = 0
+for u, v in G.edges():
+    t = vec[u] - vec[v]
+*   q = t.dot(t)
+    if minq &gt; q: minq = q
+    if maxq &lt; q: maxq = q
+*return sqrt(maxq) - sqrt(minq)
+</code></pre>
+<p>]</p>
+<h2 id="another-example"><a class="header" href="#another-example">Another Example</a></h2>
+<p>.pull-left[</p>
+<p>Bad 👎:</p>
+<pre><code class="language-{.python}">mind = 10000
+maxd = 0
+for u, v in G.edges():
+*   t = 1 - vec[u].dot(vec[v])
+*   d = arcsin(sqrt(t))
+    if mind &gt; d: mind = d
+    if maxd &lt; d: maxd = d
+
+*return maxd - mind
+</code></pre>
+<p>] .pull-right[</p>
+<p>Better ⚡:</p>
+<pre><code class="language-{.python}">minq = 10000
+maxq = 0
+for u, v in G.edges():
+*   q = 1 - vec[u].dot(vec[v])
+    if minq &gt; q: minq = q
+    if maxq &lt; q: maxq = q
+
+*return arcsin(sqrt(maxq)) \
+*        - arcsin(sqrt(minq))
+</code></pre>
+<p>]</p>
+<h2 id="optimization-tips-"><a class="header" href="#optimization-tips-">Optimization Tips 💡</a></h2>
+<ul>
+<li>
+<p>Convex optimization</p>
+</li>
+<li>
+<p>Network optimization</p>
+</li>
+<li>
+<p>Primal-dual paradigm</p>
+</li>
+</ul>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="lec01.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next prefetch" href="lec03.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="lec01.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next prefetch" href="lec03.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+        <!-- Livereload script (if served using the cli tool) -->
+        <script>
+            const wsProtocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+            const wsAddress = wsProtocol + "//" + location.host + "/" + "__livereload";
+            const socket = new WebSocket(wsAddress);
+            socket.onmessage = function (event) {
+                if (event.data === "reload") {
+                    socket.close();
+                    location.reload();
+                }
+            };
+
+            window.onbeforeunload = function() {
+                socket.close();
+            }
+        </script>
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+
+
+    </div>
+    </body>
+</html>
