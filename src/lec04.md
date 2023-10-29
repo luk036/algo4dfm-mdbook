@@ -5,6 +5,11 @@ Lecture 4: Robust Analog Circuit Sizing Under Process Variations
 
 2022-10-12
 
+📝 Abstract
+--------
+
+The lecture focuses on the robust sizing of analog circuits under process variations. It analyzes the challenges that arise when designing analog circuits at the 20nm process node, including double-patterning, layout-dependent effects, new local interconnect layers, and the use of FinFET transistors. The lecture stresses the importance of designing circuits with robustness in mind by factoring in process variations in the specification requirements. The lecture presents the concept of formulating the analog circuit sizing problem and identifies the difficulties involved, such as the high level of flexibility and susceptibility to variations. The lecture also explores various approaches to computer-aided design (CAD) for analog circuits, including knowledge-based and optimization-based techniques. The lecture discusses emerging techniques in geometric programming (GP), introducing a new method for solving robust GP problems using the affine arithmetic and the ellipsoid technique. An example of CMOS two-stage operational amplifier design demonstrates the application of the robust geometric programming approach.
+
 🔑 Keywords
 --------
 
@@ -763,23 +768,19 @@ Results of Design Variables
 Performances
 ------------
 
-.font-sm.mb-xs[
-
-  | Performance (units)            | Spec.        | Std.         | Robust       |
-  | ------------------------------ | ------------ | ------------ | ------------ |
-  | Estimated Area ($\mu$m$^2$)    | minimize     | 5678.4       | 6119.2       |
-  | Output Range (x $V_{DD}$)      | [0.1, 0.9]   | [0.07, 0.92] | [0.07, 0.92] |
-  | Comm Inp Range (x $V_{DD}$)    | [0.45, 0.55] | [0.41, 0.59] | [0.39, 0.61] |
-  | Gain (dB)                      | $\geq 80$    | 80           | [80.0, 81.1] |
-  | Unity Gain Freq. (MHz)         | $\geq 50$    | 50           | [50.0, 53.1] |
-  | Phase Margin (degree)          | $\geq 60$    | 86.5         | [86.1, 86.6] |
-  | Slew Rate (V/$\mu$s)           | $\geq 50$    | 64           | [66.7, 66.7] |
-  | CMRR (dB)                      | $\geq 75$    | 77.5         | [77.5, 78.6] |
-  | Neg. PSRR (dB)                 | $\geq 80$    | 83.5         | [83.5, 84.6] |
-  | Power (mW)                     | $\leq 3$     | 1.5          | [1.5, 1.5]   |
-  | Noise, Flicker (nV/Hz$^{0.5}$) | $\leq 800$   | $600$        | [578, 616]   |
-
-]
+| Performance (units)            | Spec.        | Std.         | Robust       |
+| ------------------------------ | ------------ | ------------ | ------------ |
+| Estimated Area ($\mu$m$^2$)    | minimize     | 5678.4       | 6119.2       |
+| Output Range (x $V_{DD}$)      |\[0.1, 0.9\]   |\[0.07, 0.92\] |\[0.07, 0.92\] |
+| Comm Inp Range (x $V_{DD}$)    |\[0.45, 0.55\] |\[0.41, 0.59\] |\[0.39, 0.61\] |
+| Gain (dB)                      | $\geq 80$    | 80           |\[80.0, 81.1\] |
+| Unity Gain Freq. (MHz)         | $\geq 50$    | 50           |\[50.0, 53.1\] |
+| Phase Margin (degree)          | $\geq 60$    | 86.5         |\[86.1, 86.6\] |
+| Slew Rate (V/$\mu$s)           | $\geq 50$    | 64           |\[66.7, 66.7\] |
+| CMRR (dB)                      | $\geq 75$    | 77.5         |\[77.5, 78.6\] |
+| Neg. PSRR (dB)                 | $\geq 80$    | 83.5         |\[83.5, 84.6\] |
+| Power (mW)                     | $\leq 3$     | 1.5          |\[1.5, 1.5\]   |
+| Noise, Flicker (nV/Hz$^{0.5}$) | $\leq 800$   | $600$        |\[578, 616\]   |
 
 
 

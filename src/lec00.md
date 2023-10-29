@@ -1,27 +1,7 @@
-layout: true
-class: typo, typo-selection
-
----
-
-class: nord-dark, middle, center
-
 Lecture 1a: 可制造性设计算法
 ============================
 
-.pull-left[
 
-@luk036
--------
-
-2023-09-06
-
-] .pull-right[
-
-![image](figs/dfm.svg)
-
-]
-
----
 
 课程概要
 --------
@@ -32,7 +12,7 @@ Lecture 1a: 可制造性设计算法
 -   Lecture notes will be available at
     <https://luk036.github.io/algo4dfm/>
 
----
+
 
 👓 教学目的
 ----------
@@ -41,7 +21,7 @@ Lecture 1a: 可制造性设计算法
 -   掌握可制造性设计自动化的一些实用算法及其基本原理
 -   *宁缺勿滥* -- avoid "no-time-to-think" syndrome
 
----
+
 
 教学内容
 --------
@@ -57,7 +37,7 @@ Lecture 1a: 可制造性设计算法
 -   混合光刻技术
 -   Redundant Via Insertion
 
----
+
 
 📚 Reference books
 -----------------
@@ -76,7 +56,7 @@ Lecture 1a: 可制造性设计算法
 -   N. Sherwani, Algorithms for VLSI Physical Design Automation (3rd
     version), KAP, 2004.
 
----
+
 
 课程考核及成绩评定
 ------------------
@@ -88,7 +68,7 @@ Lecture 1a: 可制造性设计算法
 | 作业/实验 | 40%  | PPT 讲演           |
 | 课程论文  | 40%  | 论文阅读报告       |
 
----
+
 
 任课教师简介
 ------------
@@ -97,7 +77,7 @@ Lecture 1a: 可制造性设计算法
 -   Working on large-scale software development for almost 20 years.
 -   Working on algorithm design for over 20 years.
 
----
+
 
 📜 My Publications (DfM related) I
 ------------------------------------
@@ -135,7 +115,7 @@ Lecture 1a: 可制造性设计算法
 -   魏晗一，陆伟成，一种用于双成像光刻中的版图分解算法，《复旦学报(自然科学版)》，2013
 ]
 
----
+
 
 📜 My Publications (DfM related) II
 -------------------------------------
@@ -165,7 +145,7 @@ Lecture 1a: 可制造性设计算法
     International Conference on Computer Aided-Design, pp. 112-115, 2010
 ]
 
----
+
 
 📜 My Publications (DfM related) III
 --------------------------------------
@@ -203,7 +183,7 @@ Lecture 1a: 可制造性设计算法
     微电子学与计算机, 2008 年 25 卷 3 期, 175-181 页.
 ]
 
----
+
 
 📜 My Publications (DfM related) IV
 -------------------------------------
@@ -226,17 +206,4 @@ Lecture 1a: 可制造性设计算法
     pp.1928-1930, 2006.
 ]
 
----
 
-class: nord-dark, middle, center
-
-.pull-left[
-
-Q & A 🙋️
-========
-
-] .pull-right[
-
-![image](figs/questions-and-answers.svg)
-
-]
