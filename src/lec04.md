@@ -1,17 +1,14 @@
-Lecture 4: Robust Analog Circuit Sizing Under Process Variations
-=================================================================
+# Lecture 4: Robust Analog Circuit Sizing Under Process Variations
 
 @luk036
 
 2022-10-12
 
-📝 Abstract
---------
+## 📝 Abstract
 
 The lecture focuses on the robust sizing of analog circuits under process variations. It analyzes the challenges that arise when designing analog circuits at the 20nm process node, including double-patterning, layout-dependent effects, new local interconnect layers, and the use of FinFET transistors. The lecture stresses the importance of designing circuits with robustness in mind by factoring in process variations in the specification requirements. The lecture presents the concept of formulating the analog circuit sizing problem and identifies the difficulties involved, such as the high level of flexibility and susceptibility to variations. The lecture also explores various approaches to computer-aided design (CAD) for analog circuits, including knowledge-based and optimization-based techniques. The lecture discusses emerging techniques in geometric programming (GP), introducing a new method for solving robust GP problems using the affine arithmetic and the ellipsoid technique. An example of CMOS two-stage operational amplifier design demonstrates the application of the robust geometric programming approach.
 
-🔑 Keywords
---------
+## 🔑 Keywords
 
 -   Analog circuit 模拟电路
 -   Design for robustness 鲁棒性设计
@@ -22,10 +19,7 @@ The lecture focuses on the robust sizing of analog circuits under process variat
 -   Posynomial 正项式 (Positive + polynomial)
 -   Ellipsoid method 椭球法
 
-
-
-🗺️ Overview
-------
+## 🗺️ Overview
 
 -   Challenges of 20nm Analog Design
 
@@ -41,25 +35,19 @@ The lecture focuses on the robust sizing of analog circuits under process variat
 
 -   Design examples
 
+## 📖 Introduction
 
-
-📖 Introduction
-------------
-
-| Costs        | 28nm      | 20nm        |
-| ------------ | --------- | ----------- |
-| Fab Costs    | 3B        | 4B - 7B     |
-| Process R&D  | 1.2B      | 2.1B - 3B   |
-| Mask Costs   | 2M - 3M   | 5M - 8M     |
-| Design Costs | 50M - 90M | 120M - 500M |
+  Costs          28nm        20nm
+  -------------- ----------- -------------
+  Fab Costs      3B          4B - 7B
+  Process R&D    1.2B        2.1B - 3B
+  Mask Costs     2M - 3M     5M - 8M
+  Design Costs   50M - 90M   120M - 500M
 
   : Fab, process, mask, and design costs are much higher at 20nm (IBS,
   May 2011)
 
-
-
-Challenges at 20 nm
-------------------
+## Challenges at 20 nm
 
 -   Double-patterning aware
 
@@ -73,26 +61,17 @@ Challenges at 20 nm
 
 -   New type of transistor - FinFET
 
-
-
-Double Patterning
------------------
+## Double Patterning
 
 ![img](lec04.files/img001.png)
 
-
-
-Overlay Error (Mask Shift)
---------------------------
+## Overlay Error (Mask Shift)
 
 -   Parasitic matching becomes very challenging
 
     ![img](lec04.files/img002.png)
 
-
-
-Layout-Dependent Effects
-------------------------
+## Layout-Dependent Effects
 
 | Layout-Dependent Effects      | \> 40nm | At 40nm | \>= 28nm |
 | ----------------------------- | :-----: | :-----: | :------: |
@@ -101,56 +80,33 @@ Layout-Dependent Effects
 | Length of Diffusion (LOD)     |    x    |    x    |    x     |
 | OD to OD Spacing Effect (OSE) |         |    x    |    x     |
 
-
-
-New Local Interconnect Layers
------------------------------
+## New Local Interconnect Layers
 
 ![img](lec04.files/img003.png)
 
-
-
-New Transistor Type: FinFET
----------------------------
+## New Transistor Type: FinFET
 
 ![Width is discrete. You can add 2 fins or 3 fins, but not 2.75 fins.](lec04.files/img004.png)
 
-
-
-Design for Robustness
----------------------
+## Design for Robustness
 
 -   Process variations must be included in the specification.
 
+## Basic Design Flow
 
-
-Basic Design Flow
------------------
-
-.pull-left70[
 
 ![img](lec04.files/img005.png)
 
-]
 
-
-
-Top-down Design Phases
-----------------------
+## Top-down Design Phases
 
 ![img](lec04.files/img006.png)
 
-
-
-Basic Flow of Analog Synthesis
-------------------------------
+## Basic Flow of Analog Synthesis
 
 ![img](lec04.files/img007.png)
 
-
-
-Analog Circuit Sizing Problem
------------------------------
+## Analog Circuit Sizing Problem
 
 -   Problem definition:
     -   Given a circuit topology, a set of specification requirements and technology, find the values of design variables that meet the specifications and optimize the circuit performance.
@@ -158,10 +114,7 @@ Analog Circuit Sizing Problem
     -   High degrees of freedom
     -   Performance is sensitive to variations
 
-
-
-Main Approaches in CAD
-----------------------
+## Main Approaches in CAD
 
 -   Knowledge-based
     -   Rely on circuit understanding, design heuristics
@@ -173,22 +126,14 @@ Main Approaches in CAD
 
 In practice, you mix and match of them whenever appropriate.
 
-
-
-Geometric Programming
----------------------
+## Geometric Programming
 
 -   In recent years, techniques of using geometric programming (GP) are emerging.
 -   In this lecture, we present a new idea of solving robust GP problems using **ellipsoid method** and **affine arithmetic**.
 
+# Lecture 04b - Robust Geometric Programming
 
-
-
-Lecture 04b - Robust Geometric Programming
-============================
-
-Outline
--------
+## Outline
 
 -   Problem Definition for Robust Analog Circuit Sizing
 -   Robust Geometric Programming
@@ -197,14 +142,10 @@ Outline
 -   Numerical Result
 -   Conclusions
 
-
-
-Robust Analog Circuit Sizing Problem
-------------------------------------
+## Robust Analog Circuit Sizing Problem
 
 -   Given a circuit topology and a set of specification requirements:
 
-.font-sm.mb-xs[
 
 | Constraint     | Spec.      | Units      |
 | -------------- | ---------- | ---------- |
@@ -216,14 +157,10 @@ Robust Analog Circuit Sizing Problem
 | Neg. PSRR      | $\geq 80$  | dB         |
 | Power          | $\leq 3$   | mW         |
 
-]
 
 -   Find the worst-case design variable values that meet the specification requirements and optimize circuit performance.
 
-
-
-Robust Optimization Formulation
--------------------------------
+## Robust Optimization Formulation
 
 -   Consider $$\begin{array}{ll}
         \text{minimize}   & \sup_{q \in {\mathbb{Q} }} f_0(x,q), \\
@@ -236,10 +173,7 @@ Robust Optimization Formulation
     -   $f_j \leq 0$ represents the $j$th specification requirement (such
         as phase margin $\geq 60^\circ$).
 
-
-
-Geometric Programming in Standard Form
---------------------------------------
+## Geometric Programming in Standard Form
 
 -   We further assume that $f_i(x,q)$'s are convex for all $q \in {\mathbb{Q} }$.
 -   Geometric programming is an optimization problem that takes the following standard form:
@@ -251,10 +185,7 @@ Geometric Programming in Standard Form
       \end{array}$$ where
     -   $p_i$'s are posynomial functions and $g_j$'s are monomial functions.
 
-
-
-Posynomial and Monomial Functions
----------------------------------
+## Posynomial and Monomial Functions
 
 -   A monomial function is simply:
     $$g(y_1,\ldots,y_n) = c y_1^{ {\alpha}_{1} } y_2^{ {\alpha}_{2} } \cdots y_n^{ {\alpha}_{n} }, \quad y_k > 0.$$
@@ -264,10 +195,7 @@ Posynomial and Monomial Functions
     $$p(y_1,\ldots,y_n) = \sum_{s=1}^{T}{c_s y_1^{ {\alpha}_{1,s} } y_2^{ {\alpha}_{2,s} } \cdots y_n^{ {\alpha}_{n,s} }}, \quad y_k > 0 ,$$
 -   A monomial can also be viewed as a special case of posynomial where there is only one term of the sum.
 
-
-
-Geometric Programming in Convex Form
-------------------------------------
+## Geometric Programming in Convex Form
 
 -   Many engineering problems can be formulated as a GP.
 -   On Boyd's website there is a Matlab package "GGPLAB" and an excellent tutorial material.
@@ -282,20 +210,14 @@ Geometric Programming in Convex Form
     -   $a_j = (\alpha_{1,j}, \cdots, \alpha_{n,j})$
     -   $b_j = \log(c_j)$
 
-
-
-Robust GP
----------
+## Robust GP
 
 -   GP in the convex form can be solved efficiently by interior-point methods.
 -   In robust version, coefficients $c_s$ are functions of $q$.
 -   The robust problem is still convex. Moreover, there is an infinite number of constraints.
 -   Alternative approach: Ellipsoid Method.
 
-
-
-Example - Profit Maximization Problem
--------------------------------------
+## Example - Profit Maximization Problem
 
 This example is taken from [@Aliabadi2013Robust].
 
@@ -312,10 +234,7 @@ $$\begin{array}{ll}
 -   $v$: output price
 -   $k$: a given constant that restricts the quantity of $x_1$
 
-
-
-Example - Profit maximization (cont'd)
--------------------------------------
+## Example - Profit maximization (cont'd)
 
 -   The formulation is not in the convex form.
 -   Rewrite the problem in the following form: $$\begin{array}{ll}
@@ -324,10 +243,7 @@ Example - Profit maximization (cont'd)
                     & x_1 \le k.
       \end{array}$$
 
-
-
-Profit maximization in Convex Form
-----------------------------------
+## Profit maximization in Convex Form
 
 -   By taking the logarithm of each variable:
 
@@ -342,10 +258,7 @@ $$\begin{array}{ll}
 \end{array}$$
 
 
-
-.font-sm.mb-xs[
-
-```python
+``` python
 class profit_oracle:
     def __init__(self, params, a, v):
         p, A, k = params
@@ -372,13 +285,8 @@ class profit_oracle:
         return (g, fj), t
 ```
 
-]
 
-
-
-.font-sm.mb-xs[
-
-```python
+``` python
 # Main program
 
 import numpy as np
@@ -400,12 +308,8 @@ yb1, ell_info = cutting_plane_dc(P, E, 0.)
 print(ell_info.value, ell_info.feasible)
 ```
 
-]
 
-
-
-Example - Profit Maximization Problem (convex)
----------------------------------------------
+## Example - Profit Maximization Problem (convex)
 
 $$\begin{array}{ll}
 \text{max}  & t \\
@@ -419,10 +323,7 @@ $$\begin{array}{ll}
     -   $\hat{p}$, $\hat{k}$, $\hat{v}_1$, and $\hat{v}_2$ all vary
         $\pm e_3$.
 
-
-
-Example - Profit Maximization Problem (oracle)
----------------------------------------------
+## Example - Profit Maximization Problem (oracle)
 
 By detail analysis, the worst case happens when:
 
@@ -433,9 +334,7 @@ By detail analysis, the worst case happens when:
 -   if $y_2 > 0$, $\beta = \bar{\beta} - e_2$, else
     $\beta = \bar{\beta} + e_2$
 
-
-
-```python
+``` python
 class profit_rb_oracle:
     def __init__(self, params, a, v, vparams):
         e1, e2, e3, e4, e5 = vparams
@@ -453,10 +352,7 @@ class profit_rb_oracle:
         return self.P(y, t)
 ```
 
-
-
-Oracle in Robust Optimization Formulation
------------------------------------------
+## Oracle in Robust Optimization Formulation
 
 -   The oracle only needs to determine:
     -   If $f_j(x_0, q) > 0$ for some $j$ and $q = q_0$,
@@ -478,37 +374,25 @@ Remark:
 
 -   for more complicated problems, affine arithmetic could be used [@liu2007robust].
 
+# Lecture 04c - Affine Arithmetic
 
-
-Lecture 04c - Affine Arithmetic
-===============================
-
-
-A Simple Area Problem
----------------------
+## A Simple Area Problem
 
 -   Suppose the points $p$, $q$ and $r$ vary within the region of 3 given rectangles.
 -   Q: What is the upper and lower bound on the area of $\triangle pqr$?
 
-.pull-right[
 
 ![triangle](lec04.files/triangle.svg)
 
-]
 
-
-
-Method 1: Corner-based
-----------------------
+## Method 1: Corner-based
 
 -   Calculate all the areas of triangles with different *corners*.
 -   Problems:
     -   In practical applications, there may be many corners.
     -   What's more, in practical applications, the worst-case scenario may not be at the corners at all.
 
-
-Method 2: Monte Carlo
----------------------
+## Method 2: Monte Carlo
 
 -   Monte-Carlo or Quasi Monte-Carlo:
     -   Calculate the area of triangles for different sampling points.
@@ -516,57 +400,42 @@ Method 2: Monte Carlo
 -   Disadvantage: time consuming
 
 
+# Interval Arithmetic vs. Affine Arithmetic
 
-class: center, middle
-
-Interval Arithmetic vs. Affine Arithmetic
-=========================================
-
-
-
-Method 3: Interval Arithmetic
------------------------------
+## Method 3: Interval Arithmetic
 
 -   Interval arithmetic (IA) estimation:
-    -   Let px = [2, 3], py = [3, 4]
-    -   Let qx = [-5, -4], qy = [-6, -5]
-    -   Let rx = [6, 7] , ry = [-5, -4]
+    -   Let px = \[2, 3\], py = \[3, 4\]
+    -   Let qx = \[-5, -4\], qy = \[-6, -5\]
+    -   Let rx = \[6, 7\] , ry = \[-5, -4\]
 -   Area of triangle:
     -   = ((qx - px)(ry - py) - (qy - py)(rx - px))/2
-    -   = [33 .. 61] (actually [36.5 .. 56.5])
+    -   = \[33 .. 61\] (actually \[36.5 .. 56.5\])
 -   Problem: cannot handle *correlation* between variables.
 
-
-
-Method 4: Affine Arithmetic
----------------------------
+## Method 4: Affine Arithmetic
 
 -   (Definition to be given shortly)
 -   More accurate estimation than IA:
-    -   Area = [35 .. 57] in the previous example.
+    -   Area = \[35 .. 57\] in the previous example.
 -   Take care of first-order correlation.
 -   Usually faster than Monte-Carlo, but ....
     -   becomes inaccurate if the variations are large.
 -   libaffa.a/YALAA package is publicly available:
     -   Provides functuins like +, -, \*, /, sin(), cos(), pow() etc.
 
-
-
-Analog Circuit Example
-----------------------
+## Analog Circuit Example
 
 -   Unit Gain bandwidth
     -   `GBW = sqrt(A*Kp*Ib*(W2/L2)/(2*pi*Cc)` where some parameters are varying
 
-
-
-Enabling Technologies
----------------------
+## Enabling Technologies
 
 -   C++ template and operator overloading features greatly simplify the coding effort:
+
 -   E.g., the following code can be applied to both `<double>` and `<AAF>`:
 
-    ```cpp
+    ``` cpp
     template <typename Tp>
     Tp area(const Tp& px, const Tp& qx, const Tp& rx,
             const Tp& py, const Tp& qy, const Tp& ry) {
@@ -576,21 +445,16 @@ Enabling Technologies
 
 -   In other words, some existing code can be reused with minimal modification.
 
-
-Applications of AA
-------------------
+## Applications of AA
 
 -   Analog Circuit Sizing
 -   Worst-Case Timing Analysis
 -   Statistical Static Timing Analysis
--   Parameter Variation Interconnect Model Order Reduction [CMU02]
+-   Parameter Variation Interconnect Model Order Reduction \[CMU02\]
 -   Clock Skew Analysis
 -   Bounded Skew Clock Tree Synthesis
 
-
-
-Limitations of AA
------------------
+## Limitations of AA
 
 -   Something AA can't replace `<double>`:
     -   Iterative methods (no fixed point in AA)
@@ -599,19 +463,13 @@ Limitations of AA
 -   AA can only handle linear correlation, which means you can't expect an accurate approximation of `abs(x)` near zero.
 -   Fortunately the ellipsoid method is one of the few algorithms that works with AA.
 
-
-
-Circuit Sizing for Op. Amp.
----------------------------
+## Circuit Sizing for Op. Amp.
 
 -   Geometric Programming formulation for CMOS Op. Amp.
 -   Min-max convex programming under Parametric variations (PVT)
 -   Ellipsoid Method
 
-
-
-What is Affine Arithmetic?
---------------------------
+## What is Affine Arithmetic?
 
 -   Represents a quantity x with an affine form (AAF):
     $$\hat{x} = x_0 + x_1 \epsilon_1 + \ldots + x_n \epsilon_n$$ where
@@ -621,12 +479,8 @@ What is Affine Arithmetic?
     -   $n$ is not fixed - new noise symbols are generated during the computation process.
 -   IA -\> AA : $[3..4] \rightarrow 3.5 + 0.5 \epsilon_1$
 
+## Geometry of AA
 
-
-Geometry of AA
---------------
-
-.pull-left70[
 
 -   Affine forms that share noise symbols are dependent:
     -   $\hat{x} = x_0 + x_1 \epsilon_1 + \ldots + x_n \epsilon_n$
@@ -635,16 +489,11 @@ Geometry of AA
     -   $Z = \{(x, y) : \epsilon_i \in [-1, 1]\}$
     -   This region is a centrally symmetric convex polygon called "zonotope".
 
-] .pull-right30[
 
 ![zonotope](lec04.files/zonotope.svg)
 
-]
 
-
-
-Affine Arithmetic
------------------
+## Affine Arithmetic
 
 How to find $\sup_{q \in {\mathbb{Q} }} f_j(x,q)$ efficiently?
 
@@ -655,10 +504,7 @@ How to find $\sup_{q \in {\mathbb{Q} }} f_j(x,q)$ efficiently?
     -   Enabling technology: template and operator overloading features of C++.
     -   A C++ package "YALAA" is publicly available.
 
-
-
-Affine Arithmetic for Worst Case Analysis
------------------------------------------
+## Affine Arithmetic for Worst Case Analysis
 
 -   An uncertain quantity is represented in an affine form (AAF):
     $$\hat{a} = a_0 + a_1 \varepsilon_1 + a_2 \varepsilon_2 +
@@ -670,10 +516,7 @@ Affine Arithmetic for Worst Case Analysis
 -   Results of non-affine operations (such as $\hat{a} \cdot \hat{b}$, $\hat{a}/\hat{b}$, $\max(\hat{a}, \hat{b}), \log(\hat{a})$) are *approximated* in an affine form.
 -   AA has been applied to a wide range of applications recently when process variations are considered.
 
-
-
-Affine Arithmetic for Optimization
-----------------------------------
+## Affine Arithmetic for Optimization
 
 In our robust GP problem:
 
@@ -688,19 +531,11 @@ In our robust GP problem:
       \right.   \quad j=1, \cdots, k.$$
 
 
-
-.pull-left70[
-
 ![img](lec04.files/pic4.png)
 
-]
 
+## Performance Specification
 
-
-Performance Specification
--------------------------
-
-.column-2.font-sm.mb-xs[
 
 | Constraint       | Spec.         | Units         |
 | ---------------- | ------------- | ------------- |
@@ -718,12 +553,8 @@ Performance Specification
 | Power            | $\leq 3$      | mW            |
 | Noise, Flicker   | $\leq 800$    | nV/Hz$^{0.5}$ |
 
-]
 
-
-
-Open-Loop Gain (Example)
------------------------
+## Open-Loop Gain (Example)
 
 -   Open-loop gain $A_v$ can be approximated as a monomial function:
 
@@ -733,18 +564,14 @@ Open-Loop Gain (Example)
 
 -   Corresponding C++ code fragment:
 
-    ```cpp
+    ``` cpp
     // Open Loop Gain
     monomial<aaf> OLG = 2*COX/square(LAMBDAN+LAMBDAP)*
          sqrt(KP*KN*W[1]/L[1]*W[6]/L[6]/I1/I6);
     ```
 
+## Results of Design Variables
 
-
-Results of Design Variables
----------------------------
-
-.column-2.font-sm.mb-xs[
 
 | Variable   | Units  | GGPLAB  | Our   | Robust |
 | ---------- | ------ | ------- | ----- | ------ |
@@ -761,18 +588,14 @@ Results of Design Variables
 | $C_c$      | pF     | 1.0     | 1.0   | 1.0    |
 | $I_{bias}$ | $\mu$A | 6.12    | 6.19  | 5.54   |
 
-]
 
+## Performances
 
-
-Performances
-------------
-
-| Performance (units)            | Spec.        | Std.         | Robust       |
-| ------------------------------ | ------------ | ------------ | ------------ |
-| Estimated Area ($\mu$m$^2$)    | minimize     | 5678.4       | 6119.2       |
-| Output Range (x $V_{DD}$)      |\[0.1, 0.9\]   |\[0.07, 0.92\] |\[0.07, 0.92\] |
-| Comm Inp Range (x $V_{DD}$)    |\[0.45, 0.55\] |\[0.41, 0.59\] |\[0.39, 0.61\] |
+| Performance (units)            | Spec.        | Std.         | Robust        |
+| ------------------------------ | ------------ | ------------ | ------------- |
+| Estimated Area ($\mu$m$^2$)    | minimize     | 5678.4       | 6119.2        |
+| Output Range (x $V_{DD}$)      |\[0.1, 0.9\]  |\[0.07, 0.92\]|\[0.07, 0.92\] |
+| Comm Inp Range (x $V_{DD}$)    |\[0.45, 0.55\]|\[0.41, 0.59\]|\[0.39, 0.61\] |
 | Gain (dB)                      | $\geq 80$    | 80           |\[80.0, 81.1\] |
 | Unity Gain Freq. (MHz)         | $\geq 50$    | 50           |\[50.0, 53.1\] |
 | Phase Margin (degree)          | $\geq 60$    | 86.5         |\[86.1, 86.6\] |
@@ -782,26 +605,18 @@ Performances
 | Power (mW)                     | $\leq 3$     | 1.5          |\[1.5, 1.5\]   |
 | Noise, Flicker (nV/Hz$^{0.5}$) | $\leq 800$   | $600$        |\[578, 616\]   |
 
-
-
-Conclusions
------------
+## Conclusions
 
 -   Our ellipsoid method is fast enough for practical analog circuit
-    sizing (take \< 1 sec. running on a 3GHz Intel CPU for our example).
+    sizing (take \< 1 sec. running on a 3GHz Intel CPU for our example).
 -   Our method is reliable, in the sense that the solution, once
     produced, always satisfies the specification requirement in the
     worst case.
 
-
-
-Comments
---------
+## Comments
 
 -   The marriage of AA (algebra) and Zonotope (geometry) has the potential to provide us with a powerful tool for algorithm design.
 -   AA does not solve all problems. E.g. Iterative method does not apply to AA because AA is not in the Banach space (the fixed-point theorem does not hold).
 -   AA \* and + do not obey the laws of distribution (c.f. floating-point arithmetic)
 -   AA can only perform first-order approximations. In other words, it can only be applied to nearly linear variations.
 -   In practice, we still need to combine AA with other methods, such as statistical method or the (quasi-) Monte Carlo method.
-
-

@@ -1,10 +1,6 @@
-Lecture 1a: 可制造性设计算法
-============================
+# Lecture 1a: 可制造性设计算法
 
-
-
-课程概要
---------
+## 课程概要
 
 -   任课教师: 陆伟成, 📪 联系方式: <luk@fudan.edu.cn>, 📍 办公地址:
     微电子楼 383 室. 📆 办公时间 F6-F8 或预约
@@ -12,19 +8,13 @@ Lecture 1a: 可制造性设计算法
 -   Lecture notes will be available at
     <https://luk036.github.io/algo4dfm/>
 
-
-
-👓 教学目的
-----------
+## 👓 教学目的
 
 -   了解超大规模集成电路可制造性设计的发展
 -   掌握可制造性设计自动化的一些实用算法及其基本原理
 -   *宁缺勿滥* -- avoid "no-time-to-think" syndrome
 
-
-
-教学内容
---------
+## 教学内容
 
 -   简介：可制造性设计的发展概况，工艺参数变动对芯片性能影响的问题
 -   基本软件开发原理，电子设计自动化，
@@ -37,10 +27,7 @@ Lecture 1a: 可制造性设计算法
 -   混合光刻技术
 -   Redundant Via Insertion
 
-
-
-📚 Reference books
------------------
+## 📚 Reference books
 
 -   Michael Orshansky, Sani R. Nassif, and Duane Boning (2008) [Design
     for Manufacturability and Statistical Design: A Constructive
@@ -56,10 +43,7 @@ Lecture 1a: 可制造性设计算法
 -   N. Sherwani, Algorithms for VLSI Physical Design Automation (3rd
     version), KAP, 2004.
 
-
-
-课程考核及成绩评定
-------------------
+## 课程考核及成绩评定
 
 | 考核指标  | 权重 | 评定标准           |
 | --------- | ---- | ------------------ |
@@ -68,21 +52,14 @@ Lecture 1a: 可制造性设计算法
 | 作业/实验 | 40%  | PPT 讲演           |
 | 课程论文  | 40%  | 论文阅读报告       |
 
-
-
-任课教师简介
-------------
+## 任课教师简介
 
 -   Working on "DfM" for over 10 years.
 -   Working on large-scale software development for almost 20 years.
 -   Working on algorithm design for over 20 years.
 
+## 📜 My Publications (DfM related) I
 
-
-📜 My Publications (DfM related) I
-------------------------------------
-
-.font-sm.mb-xs[
 -   Ye Zhang, Wai-Shing Luk et al. Network flow based cut redistribution
     and insertion for advanced 1D layout design, Proceedings of 2017
     Asia and South Pacific Design Automation Conference (ASP-DAC),
@@ -113,14 +90,9 @@ Lecture 1a: 可制造性设计算法
     International Conference on Computer Aided-Design (**awarded best
     paper nomination**)
 -   魏晗一，陆伟成，一种用于双成像光刻中的版图分解算法，《复旦学报(自然科学版)》，2013
-]
 
+## 📜 My Publications (DfM related) II
 
-
-📜 My Publications (DfM related) II
--------------------------------------
-
-.font-sm.mb-xs[
 -   Yanling Zhi, Wai-Shing Luk, Yi Wang, Changhao Yan, Xuan Zeng,
     Yield-Driven Clock Skew Scheduling for Arbitrary Distributions of
     Critical Path Delays, IEICE TRANSACTIONS on Fundamentals of
@@ -143,14 +115,9 @@ Lecture 1a: 可制造性设计算法
 -   Wai-Shing Luk and Huiping Huang, Fast and Lossless Graph Division
     Method for Layout Decomposition Using SPQR-Tree, Proceedings of 2010
     International Conference on Computer Aided-Design, pp. 112-115, 2010
-]
 
+## 📜 My Publications (DfM related) III
 
-
-📜 My Publications (DfM related) III
---------------------------------------
-
-.font-sm.mb-xs[
 -   Qiang Fu, Wai-Shing Luk et al., Intra-die Spatial Correlation
     Extraction with Maximum Likelihood Estimation Method for Multiple
     Test Chips, IEICE TRANSACTIONS on Fundamentals of Electronics,
@@ -181,14 +148,9 @@ Lecture 1a: 可制造性设计算法
     pp. 223-226, 2008.
 -   宋宇, 刘学欣, 陆伟成, 唐璞山, 一种鲁棒性几何规划新方法设计两级运放,
     微电子学与计算机, 2008 年 25 卷 3 期, 175-181 页.
-]
 
+## 📜 My Publications (DfM related) IV
 
-
-📜 My Publications (DfM related) IV
--------------------------------------
-
-.font-sm.mb-xs[
 -   方君, 陆伟成, 赵文庆.
     工艺参数变化下的基于统计时序分析的时钟偏差安排,
     计算机辅助设计与图形学报，第 19 卷，第 9 期，pp.1172\~1177，2007 年
@@ -204,6 +166,3 @@ Lecture 1a: 可制造性设计算法
     Estimation Method, in The Proceedings of 8th International
     Conference on Solid-state and Integrated Circuit Technology,
     pp.1928-1930, 2006.
-]
-
-

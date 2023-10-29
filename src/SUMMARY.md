@@ -3,6 +3,7 @@
 - [Lecture 0](./lec00.md)
 - [Lecture 1](./lec01b.md)
 - [Lecture 2](./lec02.md)
+- [Lecture 2c](./lec02c.md)
 - [Lecture 3](./lec03.md)
 - [Lecture 4](./lec04.md)
 - [Lecture 4x](./lec04x.md)

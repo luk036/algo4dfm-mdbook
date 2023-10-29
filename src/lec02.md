@@ -1,8 +1,6 @@
-Lecture 2a: Open-Source Software Development Flow
-=================================================
+# Lecture 2a: Open-Source Software Development Flow
 
-💬 Messages
-----------
+## 💬 Messages
 
 -   About 99% projects fail.
 -   Software is "soft"; Hardware is "hard"
@@ -13,12 +11,9 @@ Lecture 2a: Open-Source Software Development Flow
 -   Extreme programming
 -   Opensource projects - Continuous Integration
 
+## Platforms
 
-
-Platforms
----------
-
--   https://github.com
+-   <https://github.com>
 -   gitpod.io - ☁️ cloud base
 -   Github's Codespaces - ☁️ cloud base
 -   Lubuntu
@@ -26,33 +21,21 @@ Platforms
 -   FydeOS (ChromeOS) - g++-13
 -   Android's Termux - clang-17
 
-
-
-Open-source Work Flow (Python)
-------------------------------
+## Open-source Work Flow (Python)
 
 ![img](figs/python-flow.svg)
 
-
-
-Open-source Work Flow (C++)
----------------------------
+## Open-source Work Flow (C++)
 
 ![img](figs/cpp-flow.svg)
 
-
-
-Pull Request
-------------
+## Pull Request
 
 ![img](figs/pull-request.svg)
 
+## GitHub, Git
 
-
-GitHub, Git
------------
-
-``` {.bash}
+``` bash
 git clone https://github.com/luk036/csdigit
 cd csdigit
 (edit)
@@ -70,14 +53,9 @@ git switch develop
 git switch master
 ```
 
+## Example - git status
 
-
-Example - git status
---------------------
-
-.font-sm.mb-xs[
-
-``` terminal
+``` bash
 ubuntu@ubuntu:~/github/ellpy$ git status
 On branch master
 Your branch is up to date with 'origin/master'.
@@ -98,16 +76,9 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-]
+## Example - git pull
 
-
-
-Example - git pull
-------------------
-
-.font-sm.mb-xs[
-
-``` terminal
+``` bash
 lubuntu@lubuntu:~/github/luk036.github.io$ git pull
 remote: Enumerating objects: 29, done.
 remote: Counting objects: 100% (29/29), done.
@@ -126,14 +97,9 @@ Fast-forward
  5 files changed, 251 insertions(+), 198 deletions(-)
 ```
 
-]
+## GitHub, gh
 
-
-
-GitHub, gh
-----------
-
-``` {.bash}
+``` bash
 gh repo create csdigit --public
 gh repo clone csdigit
 gh run list
@@ -145,21 +111,18 @@ gh issue create
 gh search repos digraphx
 ```
 
-
-
-Python
-------
+## Python
 
 -   Create a new porject
 
-``` {.bash}
+``` bash
 pip install pyscaffold[all]
 putup -i --markdown --github-actions csdigit
 ```
 
 -   ⚙️ Setup
 
-``` {.bash}
+``` bash
 cd csdigit
 pip install -e .
 pip install -r requirements.txt
@@ -167,32 +130,29 @@ pip install -r requirements.txt
 
 -   🧪 Unit Testing
 
-``` {.bash}
+``` bash
 pytest
 pytest --doctest-modules src
 ```
 
 -   ⛺ Code Coverage
 
-``` {.bash}
+``` bash
 pytest --cov=src/csdigit
 ```
 
-
-
-Python
-------
+## Python
 
 -   🪄 Formatting and static check
 
-``` {.bash}
+``` bash
 pip install pre-commit
 pre-commit run --all-files
 ```
 
 -   📝 Documentation
 
-``` {.bash}
+``` bash
 pip install -r docs/requirements.txt
 cd docs
 make html
@@ -201,18 +161,13 @@ python -m http.server
 
 -   📊 Benchmarking
 
-``` {.bash}
+``` bash
 pytest benches/test_bench.py
 ```
 
+## 📊 Benchmarking Example
 
-
-📊 Benchmarking Example
-----------------------
-
-.font-sm.mb-xs[
-
-``` terminal
+``` bash
 ubuntu@ubuntu:~/github/ellpy$ pytest tests/test_lmi.py
 <span style="font-weight:bold;">============================= test session starts ==============================</span>
 platform linux -- Python 3.7.3, pytest-5.1.2, py-1.8.0, pluggy-0.13.0 -- /media/ubuntu/casper-rw/miniconda3/bin/python
@@ -238,34 +193,25 @@ Legend:
 <span style="color:green;"></span><span style="font-weight:bold;color:green;">============================== 2 passed in 3.27s ===============================</span>
 ```
 
-]
-
-
-
-Rust
-----
+## Rust
 
 -   Create a new project
 
-.font-sm.mb-xs[
-
-``` {.bash}
+``` bash
 cargo install cargo-generate
 cargo generate -o --init --git https://github.com/rust-github/template.git
 ```
 
-]
-
 -   ⚙️ Setup
 
-``` {.bash}
+``` bash
 cd csd-rs
 cargo build
 ```
 
 -   🧪 Unit Testing
 
-``` {.bash}
+``` bash
 cargo test
 cargo test --lib
 cargo test --doc
@@ -273,18 +219,15 @@ cargo test --doc
 
 -   ⛺ Code Coverage
 
-``` {.bash}
+``` bash
 cargo tarpaulin (Windows)
 ```
 
-
-
-Rust
-----
+## Rust
 
 -   🪄 Formatting and static check
 
-``` {.bash}
+``` bash
 cargo fmt
 cargo clippy
 cargo clippy --fix
@@ -292,7 +235,7 @@ cargo clippy --fix
 
 -   📝 Documentation
 
-``` {.bash}
+``` bash
 cargo doc
 cd target/doc
 python -m http.server
@@ -300,14 +243,11 @@ python -m http.server
 
 -   📊 Benchmarking
 
-``` {.bash}
+``` bash
 cargo bench
 ```
 
-
-
-C++ (CMake + CPM)
------------------
+## C++ (CMake + CPM)
 
 -   Create a new project
 
@@ -315,7 +255,7 @@ C++ (CMake + CPM)
 
 -   ⚙️ Setup
 
-``` {.bash}
+``` bash
 cd csd-cpp
 cmake -Sall -Bbuild -DCMAKE_BUILD_TYPE=Release
 cmake --build build
@@ -323,24 +263,21 @@ cmake --build build
 
 -   🧪 Unit Testing
 
-``` {.bash}
+``` bash
 cmake --build build --target test
 ```
 
 -   ⛺ Code Coverage
 
-``` {.bash}
+``` bash
 ??
 ```
 
-
-
-C++ (CMake + CPM)
------------------
+## C++ (CMake + CPM)
 
 -   🪄 Formatting and static check
 
-``` {.bash}
+``` bash
 pip install cmake-format clang-format
 cmake -Sall -Bbuild -DCMAKE_BUILD_TYPE=Release
 cmake --build build --target fix-format
@@ -348,78 +285,67 @@ cmake --build build --target fix-format
 
 -   📝 Documentation
 
-``` {.bash}
+``` bash
 cmake --build build --target GenerateDocs
 ```
 
 -   📊 Benchmarking
 
-``` {.bash}
+``` bash
 ./build/bench/BM_switch
 ```
 
-
-
-C++ (XMake)
------------
+## C++ (XMake)
 
 -   Create a new project
 
-``` {.bash}
+``` bash
 xmake create -t static lds-cpp
 xmake create -t console csd-cpp
 ```
 
 -   ⚙️ Setup
 
-``` {.bash}
+``` bash
 xmake f -m debug
 xmake
 ```
 
 -   🧪 Unit Testing
 
-``` {.bash}
+``` bash
 xmake run test_csd
 ```
 
 -   ⛺ Code Coverage
 
-``` {.bash}
+``` bash
 ??
 ```
 
-
-
-C++ (XMake)
------------
+## C++ (XMake)
 
 -   🪄 Formatting and static check
 
-``` {.bash}
+``` bash
 xmake format
 ```
 
 -   📝 Documentation
 
-``` {.bash}
+``` bash
 xmake doxygen
 ```
 
 -   📊 Benchmarking
 
-``` {.bash}
+``` bash
 xmake run test_bench
 ```
 
+# Lecture 2b: Programming in the Age of AI 🤖
 
-
-Lecture 2b: Programming in the Age of AI 🤖
-==========================================
-
-
-Coding Tips 💡
--------------
+## Coding Tips 💡
 
 -   Test, test, test!!!
 -   Write cleaner code
@@ -431,31 +357,22 @@ Coding Tips 💡
 -   Learn from good codes, not bad ones.
 -   The last rescue: Google search.
 
-
-
-Code generation
----------------
+## Code generation
 
 -   AWS CodeWhisperer (VSCode's extension)
     -   generate testing code
 
-
-
-Documentation generation
-------------------------
+## Documentation generation
 
 Mintlify (VSCode's extension)
 
 -   Naming
 -   a, i, p, n ❌
 -   A x = b
--   x: unknown, x\_axis
+-   x: unknown, x_axis
 -   x, y, z
 
-
-
-Use better variable names
--------------------------
+## Use better variable names
 
 -   p: point, polygon, polynomial, prev
 -   t: time, target, temp
@@ -472,10 +389,7 @@ Use better variable names
 -   n, m: ndim, mdim
 -   w: weight, frequence (omega)
 
-
-
-🚀 Performance Tips 💡
---------------------
+## 🚀 Performance Tips 💡
 
 -   Avoid string comparison
 -   Use sentinel
@@ -486,16 +400,11 @@ Use better variable names
     -   Backward pointers
     -   Hash Table/Dictionary/Map
 
-
-
-Avoid string comparison
------------------------
-
-.pull-left[
+## Avoid string comparison
 
 Bad 👎:
 
-``` {.python}
+``` python
 if pin == "input":
     # ...
 elif pin == "output":
@@ -508,13 +417,9 @@ else:
     # ...
 ```
 
-]
-
-.pull-right[
-
 Better ⚡:
 
-``` {.python}
+``` python
 pin_type = dict({"input":0},
   {"output":1}, {"in_out":2},
   {"dont_care":3})
@@ -532,20 +437,11 @@ else:
     # ...
 ```
 
-]
-
-
-
-Use Sentinel
-------------
-
-.pull-left[
+## Use Sentinel
 
 Bad 👎:
 
-.font-sm.mb-xs[
-
-``` {.python}
+``` python
 max = 0
 bckt = [Dllist() for _ in range(high)]
 # ...
@@ -556,15 +452,9 @@ def popleft():
     return res
 ```
 
-]
-
-] .pull-right[
-
 Better ⚡:
 
-.font-sm.mb-xs[
-
-``` {.python}
+``` python
 max = 0
 sentinel = Dllink()
 bckt = [Dllist() for _ in range(high+1)]
@@ -578,20 +468,11 @@ def popleft():
 # Saved a boundary check `max >= 0`
 ```
 
-]
-
-]
-
-
-
-Use cheaper measure
--------------------
-
-.pull-left[
+## Use cheaper measure
 
 Bad 👎:
 
-``` {.python}
+``` python
 mind = 10000
 maxd = 0
 for u, v in G.edges():
@@ -602,11 +483,9 @@ for u, v in G.edges():
 *return maxd - mind
 ```
 
-] .pull-right[
-
 Better ⚡:
 
-``` {.python}
+``` python
 minq = 10000
 maxq = 0
 for u, v in G.edges():
@@ -617,18 +496,11 @@ for u, v in G.edges():
 *return sqrt(maxq) - sqrt(minq)
 ```
 
-]
-
-
-
-Another Example
----------------
-
-.pull-left[
+## Another Example
 
 Bad 👎:
 
-``` {.python}
+``` python
 mind = 10000
 maxd = 0
 for u, v in G.edges():
@@ -640,11 +512,9 @@ for u, v in G.edges():
 *return maxd - mind
 ```
 
-] .pull-right[
-
 Better ⚡:
 
-``` {.python}
+``` python
 minq = 10000
 maxq = 0
 for u, v in G.edges():
@@ -656,17 +526,10 @@ for u, v in G.edges():
 *        - arcsin(sqrt(minq))
 ```
 
-]
-
-
-
-Optimization Tips 💡
--------------------
+## Optimization Tips 💡
 
 -   Convex optimization
 
 -   Network optimization
 
 -   Primal-dual paradigm
-
-
