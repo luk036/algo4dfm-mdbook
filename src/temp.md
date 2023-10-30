@@ -529,7 +529,7 @@ A *network* is a collection of finite-dimensional vector spaces of
 *nodes* and *edges*/*arcs*:
 
 - $V = \{v_1, v_2, \cdots, v_N \}$, where $|V| = N$
-- $E = \{e_1, e_2, e_3, \cdots, e_M \}$, where $|E| = M$
+- $E = \{e_1, e_2, e_3, \cdots, e_M \}$ where $|E| = M$
 
 which satisfies 2 requirements:
 
