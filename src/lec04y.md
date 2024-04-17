@@ -4,13 +4,9 @@
 
 2023-10-18
 
-
-
 ## 📝 Abstract
 
 This lecture provides a brief history of the ellipsoid method. Then it discusses implementation issues of the ellipsoid method, such as utilizing parallel cuts to update the search space and enhance computation time. In some instances, parallel cuts can drastically reduce computation time, as observed in FIR filter design. Discrete optimization is also investigated, illustrating how the ellipsoid method can be applied to problems that involve discrete design variables. An oracle implementation is required solely for locating the nearest discrete solutions
-
-
 
 ## Some History of Ellipsoid Method [@BGT81]
 
@@ -23,8 +19,6 @@ This lecture provides a brief history of the ellipsoid method. Then it discusses
 - In practice, however, the simplex method runs much faster than the
   method, although its worst-case complexity is exponential.
 
-
-
 ## Basic Ellipsoid Method
 
 - An ellipsoid $\mathcal{E}(x_c, P)$ is specified as a set
@@ -33,19 +27,18 @@ This lecture provides a brief history of the ellipsoid method. Then it discusses
 
 ![](ellipsoid.files/ellipsoid.svg)
 
-
-
 ## Updating the ellipsoid (deep-cut)
 
 .column-2.column-norule[
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
-$${\color{red} \mathcal{E} } \cap 
- /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{green} \beta} \le 0 /}. $$
+
+$$
+{\color{red} \mathcal{E} } \cap
+ /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{green} \beta} \le 0 /}.
+$$
 
 ![Deep-cut](ellipsoid.files/deep-cut.svg)
 ]
-
-
 
 ## Updating the ellipsoid (deep-cut)
 
@@ -70,8 +63,6 @@ $$
   \delta = \frac{n^2(\tau + \beta)(\tau - \beta)}{(n^2 - 1)\tau^2}.
 $$
 
-
-
 ## Updating the ellipsoid (cont'd)
 
 - Even better, split $P$ into two variables $\kappa \cdot Q$
@@ -90,8 +81,6 @@ $$
   - The determinant of $Q$ decreases monotonically.
   - The range of $\delta$ is $(0, \frac{n^2}{n^2 - 1})$.
 
-
-
 ## Central Cut
 
 - A Special case of deep cut when $\beta = 0$
@@ -106,25 +95,22 @@ $$
   \delta = \frac{n^2}{n^2 - 1}.
 $$
 
-
-
 ## Central Cut
 
 .column-2.column-norule[
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
-$${\color{red} \mathcal{E} } \cap 
- /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) \le 0 /}. $$
+
+$$
+{\color{red} \mathcal{E} } \cap
+ /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) \le 0 /}.
+$$
 
 ![Central-cut](ellipsoid.files/central-cut.svg)
 ]
 
-
-
 class: middle, center
 
 # Parallel Cuts
-
-
 
 ## Parallel Cuts
 
@@ -144,20 +130,19 @@ class: middle, center
 
 - Usually provide faster convergence.
 
-
-
 ## Parallel Cuts
 
 .column-2.column-norule[
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
-$${\color{red} \mathcal{E} } \cap 
+
+$$
+{\color{red} \mathcal{E} } \cap
  /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{green} \beta_0} \le 0 //
-            \land {\color{blue} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{blue} \beta_1} \ge 0  /}. $$
+            \land {\color{blue} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{blue} \beta_1} \ge 0  /}.
+$$
 
 ![Parallel Cut](ellipsoid.files/parallel-cut.svg)
 ]
-
-
 
 ## Updating the ellipsoid (old)
 
@@ -183,8 +168,6 @@ $${\color{red} \mathcal{E} } \cap
    \end{array}
   $$
 
-
-
 ## Updating the ellipsoid (new)
 
 - Let $\tilde{g} = Q\,g$, $\tau^2 = \kappa\cdot\omega$.
@@ -209,18 +192,17 @@ $${\color{red} \mathcal{E} } \cap
    \end{array}
   $$
 
-
-
 ## Parallel Central Cuts
 
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
-$${\color{red} \mathcal{E} } \cap 
+
+$$
+{\color{red} \mathcal{E} } \cap
  /{z \mid {\color{green} g^\mathsf{T} } (z - {\color{orange} x_c}) \le 0 //
-            \land {\color{blue} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{blue} \beta_1} \ge 0  /}. $$
+            \land {\color{blue} g^\mathsf{T} } (z - {\color{orange} x_c}) + {\color{blue} \beta_1} \ge 0  /}.
+$$
 
-
-
-## Updating the ellipsoid 
+## Updating the ellipsoid
 
 - Let $\tilde{g} = Q\,g$, $\tau^2 = \kappa\cdot\omega$.
 - If $\beta_1^2 > \tau^2$, it reduces to central-cut
@@ -242,16 +224,12 @@ $${\color{red} \mathcal{E} } \cap
    \end{array}
   $$
 
-
-
 ## Example - FIR filter design
 
 ![A typical structure of an FIR filter @mitra2006digital.](ellipsoid.files/fir_strctr.svg)
 
 - The time response is:
   $$y[t] = \sum_{k=0}^{n-1}{h[k]u[t-k]}. $$
-
-
 
 ## Example - FIR filter design (cont'd)
 
@@ -267,8 +245,6 @@ $${\color{red} \mathcal{E} } \cap
 
 - The constraint is non-convex in general.
 
-
-
 ## Example - FIR filter design (II)
 
 - However, via *spectral factorization* [@goodman1997spectral], it can transform into a convex one\ [@wu1999fir]:
@@ -279,8 +255,6 @@ $${\color{red} \mathcal{E} } \cap
   - $R(\omega)=\sum_{i=-1+n}^{n-1}{r(t)e^{-j{\omega}t} }=|H(\omega)|^2$
   - $\mathbf{r}=(r(-n+1),r(-n+2),...,r(n-1))$ are the
     autocorrelation coefficients.
-
-
 
 ## Example - FIR filter design (III)
 
@@ -300,13 +274,9 @@ $$
 \end{array}
 $$
 
-
-
 #🧪 Experiment
 
 ![Result](ellipsoid.files/lowpass.svg)
-
-
 
 ## 📊 Google Benchmark Result
 
@@ -319,13 +289,9 @@ $$
 3/4 Test #3: Bench_BM_lowpass .................   Passed    1.72 sec
 ```
 
-
-
 class: middle, center
 
 # Discrete Optimization
-
-
 
 ## Why Discrete Convex Programming
 
@@ -336,10 +302,8 @@ class: middle, center
   from the cell library. In other words, some design variables
   are discrete.
 
-- The discrete version can be formulated as a *Mixed-Integer Convex
-  programming* (MICP) by mapping the design variables to integers.
-
-
+- The discrete version can be formulated as a _Mixed-Integer Convex
+  programming_ (MICP) by mapping the design variables to integers.
 
 ## What's Wrong w/ Existing Methods?
 
@@ -353,8 +317,6 @@ class: middle, center
 
 - What if I can only evaluate constraints on discrete data?
   Workaround: convex fitting?
-
-
 
 ## Mixed-Integer Convex Programming
 
@@ -373,8 +335,6 @@ where
 - $f_0(x)$ and $f_j(x)$ are "convex"
 - Some design variables are discrete.
 
-
-
 ## Oracle Requirement
 
 - The oracle looks for the nearby discrete solution ${\color{magenta} x_d}$ of ${\color{orange} x_c}$
@@ -386,16 +346,10 @@ where
 - Suggestion: use different cuts as possible for each iteration
   (e.g. round-robin the evaluation of constraints)
 
-
-
 ## Discrete Cut
 
 ![Discrete Cut](ellipsoid.files/discrete-cut.svg)
 
-
-
 ## Example - Multiplier-less FIR filter design (nnz=3)
 
 ![Lowpass](ellipsoid.files/csdlowpass.svg)
-
-

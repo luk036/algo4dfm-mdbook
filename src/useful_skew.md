@@ -22,7 +22,7 @@ Some common challenges when implementing useful skew design include:
 
 If these challenges are overcome and useful skew design is implemented correctly,
 
-- it can lead to less time spent on timing issues 
+- it can lead to less time spent on timing issues
 - get better chip performance or yield
 
 ---
