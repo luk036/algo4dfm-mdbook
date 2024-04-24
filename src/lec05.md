@@ -395,7 +395,6 @@ where $\text{Slack}_{ij} = T_\text{CP} - D_{ij} - T_\text{setup} - \text{Skew}_{
   -T_\text{hold} + (d_{ij} - \alpha \sqrt{d_{ij} } \sigma)
   \end{array}$$ where $\alpha$ ensures a minimum timing margin for
   each timing constraint.
-  $$
 
 ## Prop-Based on Gaussian model (II)
 
@@ -433,7 +432,7 @@ where $\text{Slack}_{ij} = T_\text{CP} - D_{ij} - T_\text{setup} - \text{Skew}_{
 
 ![image](lec05.files/fig20.png)
 
-## Statistical Method
+## 📈 Statistical Method
 
 - Setup time constraint
 
@@ -446,7 +445,7 @@ where $\text{Slack}_{ij} = T_\text{CP} - D_{ij} - T_\text{setup} - \text{Skew}_{
   where $\tilde{D}_{if} \text{ and } \tilde{d}_{if}$
   are random variable under process variations.
 
-## Statistical TC Graph
+## 📈 Statistical TC Graph
 
 ![image](lec05.files/tcgraph9.svg)
 
@@ -569,7 +568,6 @@ Final result: $T_1=T_1+T_{s_1}+T_{s_3}$
     \text{maximum}    & t \\
     \text{subject to} & T_j - T_i \leq \mu_{ij} - t
   \end{array}$$ (👉 Note: $\mu_{ij} \text{ is not equal to } \mu_{ji}$)
-  $$
 
 - is equivalent to the so-called _minimum mean cycle problem_ (MMC),
   where:
@@ -588,7 +586,6 @@ Final result: $T_1=T_1+T_{s_1}+T_{s_3}$
     \text{maximum}   & t \\
     \text{subject to} & T_j - T_i \leq \mu_{ij} - \sigma_{ij} t
   \end{array}$$ (we show the correctness later)
-  $$
 
 - is equivalent to the _minimum cost-to-time ratio problem_ (MCR), where:
 
@@ -604,7 +601,6 @@ Final result: $T_1=T_1+T_{s_1}+T_{s_3}$
     \text{subject to} & T_i - T_j \leq f_{ij}(t), \; \forall (i,j) \in E
   \end{array}$$ where $f_{ij}(t)$ a linear function that represents
   various problems defined above.
-  $$
 
 | Problem | $g(t)$ | $f_{ij}(t)$ (setup)                                 | $f_{ji}(t)$ (hold)                        |
 | ------- | ------ | --------------------------------------------------- | ----------------------------------------- |
@@ -625,7 +621,7 @@ Final result: $T_1=T_1+T_{s_1}+T_{s_3}$
 
 - Question 2: What if $g(t)$ and $f_{ij}(t)$ are convex but not monotone?
 
-## Non-Gaussian Distribution
+## 🔕 Non-Gaussian Distribution
 
 - 65nm and below, the path delay is likely to have a non-Gaussian distribution:
 
@@ -657,7 +653,7 @@ Final result: $T_1=T_1+T_{s_1}+T_{s_3}$
 
 - Luckily, any CDF must be a monotonic increasing function.
 
-## Statistical Interpretations of C-PROP
+## 📈 Statistical Interpretations of C-PROP
 
 - Reduce to C-PROP when $\tilde{W}_{ij}$ is Gaussian, or precisely
 

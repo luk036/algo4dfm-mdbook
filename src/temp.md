@@ -231,7 +231,7 @@ $$
 - Gradient descent:
   - $p = -\nabla f(x)^\mathsf{T}$
 - Steepest descent:
-  - $\triangle x^{nsd}$ = argmin$\{\nabla f(x)^\mathsf{T} v \mid \|v\|=1 \}$.
+  - $\triangle x^{nsd} = \argmin\{\nabla f(x)^\mathsf{T} v \mid \|v\|=1 \}$.
   - $\triangle x^{sd}$ = $\|\nabla f(x)\| \triangle x^{nsd}$ (un-normalized)
 - Newton's method:
   - $p = -\nabla^2 f(x)^{-1} \nabla f(x)$
@@ -271,7 +271,7 @@ $$
 
 ## Common Types of Line Search
 
-- Exact line search: $t$ = argmin$_{t>0} f(x + t\triangle x)$
+- Exact line search: $t = \argmin_{t>0} f(x + t\triangle x)$
 - Backtracking line search (with parameters $\alpha \in (0,1/2), \beta \in (0,1)$)
   - starting from $t = 1$, repeat $t := \beta t$ until
     $$f(x + t\triangle x) < f(x) + \alpha t \nabla f(x)^\mathsf{T} \triangle x$$
@@ -367,7 +367,7 @@ $$
   - Hence, $\mathbf{d}^\mathsf{T} x$ is a random variable with mean
     $d^\mathsf{T} x$ and variance $x^\mathsf{T} \Sigma x$.
 
-## Statistical Optimization
+## 📈 Statistical Optimization
 
 - The problem can be recast as: $$\begin{array}{ll}
       \text{min} & t \\

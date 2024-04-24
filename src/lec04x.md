@@ -306,7 +306,6 @@ xbest, \gamma, num_iters = cutting_plane_optim(omega, ellip, 0.0)
     \text{subject to} & f_j(x,q) \leq 0, \;
      \forall q \in {\mathbb Q}, \; j = 1,2,\cdots,m,
   \end{array}$$ where $q$ represents a set of varying parameters.
-  $$
 
 - The problem can be reformulated as:
   $$
@@ -366,7 +365,7 @@ class ProfitRbOracle(OracleOptim):
         return self.omega.assess_optim(y, gamma)
 ```
 
-## Oracle in Robust Optimization Formulation
+## 🔮 Oracle in Robust Optimization Formulation
 
 - The oracle only needs to determine:
   - If $f_j(x_0, q) > 0$ for some $j$ and $q = q_0$,
@@ -379,7 +378,7 @@ class ProfitRbOracle(OracleOptim):
       $(\partial f_0(x_0, q_0), f_0(x_0, q_0) - \gamma)$
   - Otherwise, $x_0$ is feasible, then
     - Let
-      $q_{\max} = \text{argmax}_{q \in \mathbb Q} f_0(x_0, q)$.
+      $q_{\max} = \argmax_{q \in \mathbb Q} f_0(x_0, q)$.
     - $\gamma := f_0(x_0, q_{\max})$.
     - The cut $(g, \beta)$ =
       $(\partial f_0(x_0, q_{\max}), 0)$
@@ -526,7 +525,7 @@ $$
 \end{array}
 $$
 
-## Oracle in Matrix Inequalities
+## 🔮 Oracle in Matrix Inequalities
 
 The oracle only needs to:
 
@@ -681,7 +680,7 @@ cycles in a weighted graph [@cherkassky1999negative], in which Tarjan's
 algorithm [@Tarjan1981negcycle] is one of the fastest algorithms in
 practice [@alg:dasdan_mcr; @cherkassky1999negative].
 
-## Oracle in Network Potential Problem
+## 🔮 Oracle in Network Potential Problem
 
 - The oracle only needs to determine:
   - If there exists a negative cycle $C_k$ under $x_0$, then
@@ -812,7 +811,7 @@ $$
    \end{array}
 $$
 
-# 🏉 Ellipsoid Method Revisited
+# 🫒 Ellipsoid Method Revisited
 
 ## 📝 Abstract
 
@@ -915,9 +914,9 @@ $$
 
 ![Central-cut](ellipsoid.files/central-cut.svg)
 
-# Parallel Cuts
+# 🪜 Parallel Cuts
 
-## Parallel Cuts
+## 🪜 Parallel Cuts
 
 - Oracle returns a pair of cuts instead of just one.
 
@@ -928,15 +927,13 @@ $$
   {\color{green} g^\mathsf{T} } (x - {\color{orange} x_c}) + {\color{green} \beta_0} \leq 0, \\
   {\color{blue} g^\mathsf{T} } (x - {\color{orange} x_c}) + {\color{blue} \beta_1} \geq 0,
   \end{array}$$ for all $x \in \mathcal{K}$.
-  \$\$
-  $$
 
 - Only linear inequality constraint can produce such parallel cut:
   $$ l \le a^\mathsf{T} x + b \le u, \quad L \preceq F(x) \preceq U. $$
 
 - Usually provide faster convergence.
 
-## Parallel Cuts
+## 🪜 Parallel Cuts
 
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
 
@@ -1137,7 +1134,7 @@ where
 - $f_0(x)$ and $f_j(x)$ are "convex"
 - Some design variables are discrete.
 
-## Oracle Requirement
+## 🔮 Oracle Requirement
 
 - The oracle looks for the nearby discrete solution ${\color{magenta} x_d}$ of ${\color{orange} x_c}$
   with the cutting-plane:

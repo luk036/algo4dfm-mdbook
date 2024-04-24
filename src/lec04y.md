@@ -1,4 +1,4 @@
-# 🏉 Ellipsoid Method Revisited
+# 🫒 Ellipsoid Method Revisited
 
 @luk036
 
@@ -110,9 +110,9 @@ $$
 
 class: middle, center
 
-# Parallel Cuts
+# 🪜 Parallel Cuts
 
-## Parallel Cuts
+## 🪜 Parallel Cuts
 
 - Oracle returns a pair of cuts instead of just one.
 
@@ -130,7 +130,7 @@ class: middle, center
 
 - Usually provide faster convergence.
 
-## Parallel Cuts
+## 🪜 Parallel Cuts
 
 .column-2.column-norule[
 Calculation of minimum volume ellipsoid ${\color{violet} \mathcal{E}^+}$ covering:
@@ -335,7 +335,7 @@ where
 - $f_0(x)$ and $f_j(x)$ are "convex"
 - Some design variables are discrete.
 
-## Oracle Requirement
+## 🔮 Oracle Requirement
 
 - The oracle looks for the nearby discrete solution ${\color{magenta} x_d}$ of ${\color{orange} x_c}$
   with the cutting-plane:

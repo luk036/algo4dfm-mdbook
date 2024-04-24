@@ -16,13 +16,14 @@
 
 ## Parametric potential problems
 
-Consider: $$
+Consider: 
+
+$$
 \begin{array}{ll}
 \text{maximize} & g(\beta), \\
 \text{subject to} & y \leq d(\beta), \\
 & A u = y,
 \end{array}
-
 $$
 
 where $g(\beta)$ and $d(\beta)$ are concave.
@@ -47,13 +48,11 @@ where $g(\beta)$ and $d(\beta)$ are concave.
 
 Consider:
 $$
-
     \begin{array}{ll}
         \text{maximize}      & f(\beta), \\
         \text{subject to}    & y \leq d(\beta), \\
                              & A u = y,
     \end{array}
-
 $$
 
 where $f(\beta)$ is *quasi-convex* and $d(\beta)$ are concave.
@@ -98,13 +97,11 @@ For example:
 
 Consider a convex feasibility problem:
 $$
-
     \begin{array}{ll}
         \text{find}      & f(\beta), \\
         \text{s. t.}     & \phi_t(\beta) \le 0, \\
                          & y \leq d(\beta),  A u = y,
     \end{array}
-
 $$
 
 - If feasible, we conclude that $t \ge p^*$;
@@ -121,19 +118,25 @@ Binary search on $t$ can be used for obtaining $p^*$.
 
 ## Monotonic Minimization
 
-- Consider the following problem: $$\begin{array}{ll}
+- Consider the following problem:
+    $$
+    \begin{array}{ll}
       \text{minimize}      & \max_{ij} f_{ij}(y_{ij}), \\
       \text{subject to}    & A u = y,
     \end{array}
-$$
+    $$
 
     where $f_{ij}(y_{ij})$ is non-decreasing.
 
-- The problem can be recast as: $$\begin{array}{ll}
+- The problem can be recast as: 
+
+    $$
+    \begin{array}{ll}
       \text{maximize} & \beta, \\
       \text{subject to} & y \leq f^{-1}(\beta), \\
       & A u = y,
-    \end{array}$$
+    \end{array}
+    $$
 
   where $f^{-1}(\beta)$ is non-deceasing w.r.t. $\beta$.
 
@@ -166,11 +169,14 @@ $$
 
 - Let $F(x)$ is the cdf of $\tilde{d}$.
 
-- Then: $$\begin{array}{lll}
-      & & \beta \leq \Pr(y_{ij} \leq \tilde{d}_{ij}) \leq t \\
-      & \Rightarrow & \beta \leq 1 - F_{ij}(y_{ij}) \\
-      & \Rightarrow & y_{ij} \leq F_{ij}^{-1}(1 - \beta)
-      \end{array}$$
+- Then:
+  $$
+  \begin{array}{lll}
+    & & \beta \leq \Pr(y_{ij} \leq \tilde{d}_{ij}) \leq t \\
+    & \Rightarrow & \beta \leq 1 - F_{ij}(y_{ij}) \\
+    & \Rightarrow & y_{ij} \leq F_{ij}^{-1}(1 - \beta)
+  \end{array}
+  $$
 
 - The problem becomes:
 
@@ -231,7 +237,7 @@ $$
 - Gradient descent:
   - $p = -\nabla f(x)^\mathsf{T}$
 - Steepest descent:
-  - $\triangle x^{nsd}$ = argmin$\{\nabla f(x)^\mathsf{T} v \mid \|v\|=1 \}$.
+  - $\triangle x^{nsd} = \argmin\{\nabla f(x)^\mathsf{T} v \mid \|v\|=1 \}$.
   - $\triangle x^{sd}$ = $\|\nabla f(x)\| \triangle x^{nsd}$ (un-normalized)
 - Newton's method:
   - $p = -\nabla^2 f(x)^{-1} \nabla f(x)$
@@ -239,11 +245,14 @@ $$
 ## Network flow says (II)
 
 - Here, there is a better way to choose $p$!
-- Let $x := x + \alpha p$, then we have: $$\begin{array}{lll}
+- Let $x := x + \alpha p$, then we have: 
+    $$
+    \begin{array}{lll}
       \text{min}   & d^\mathsf{T} x_0 + \alpha d^\mathsf{T} p  & \Rightarrow d^\mathsf{T} < 0 \\
       \text{s. t.} & -x_0 \leq \alpha p \leq c-x_0 & \Rightarrow \text{residual graph} \\
       & A^\mathsf{T} p = 0 & \Rightarrow p \text{ is a cycle!}
-    \end{array}$$
+    \end{array}
+    $$
 - In other words, choose $p$ to be a negative cycle with cost $d$!
   - Simple negative cycle, or
   - Minimum mean cycle
@@ -263,15 +272,19 @@ $$
 
 ## Min-Cost Flow Convex Problem
 
-- Problem Formulation: $$\begin{array}{ll}
+- Problem Formulation:
+    $$
+    \begin{array}{ll}
       \text{min} & f(x) \\
       \text{s. t.} & 0 \leq x \leq c, \\
        & A^\mathsf{T} x = b, \; b(V)=0
-    \end{array}$$
+    \end{array}
+    $$
 
 ## Common Types of Line Search
 
-- Exact line search: $t$ = argmin$_{t>0} f(x + t\triangle x)$
+- Exact line search: 
+  - $t = \argmin_{t>0} f(x + t\triangle x)$
 - Backtracking line search (with parameters $\alpha \in (0,1/2), \beta \in (0,1)$)
   - starting from $t = 1$, repeat $t := \beta t$ until
     $$f(x + t\triangle x) < f(x) + \alpha t \nabla f(x)^\mathsf{T} \triangle x$$
@@ -367,7 +380,7 @@ $$
   - Hence, $\mathbf{d}^\mathsf{T} x$ is a random variable with mean
     $d^\mathsf{T} x$ and variance $x^\mathsf{T} \Sigma x$.
 
-## Statistical Optimization
+## 📈 Statistical Optimization
 
 - The problem can be recast as: $$\begin{array}{ll}
       \text{min} & t \\
@@ -589,10 +602,6 @@ with entries: $$A(i,j) = \begin{cases}
   -1 & \text{if $e_i$ is not coherent with $v_j$}, \\  
    0 & \text{otherwise.}
   \end{cases}$$
-
-### Example (II)
-
-$A^\mathsf{T} = \begin{bmatrix} 0 & -1 & 1 & 1 & 0 \\ 1 & 1 & 0 & -1 & -1 \\ -1 & 0 & -1 & 0 & 1 \end{bmatrix}$
 
 ## Timing Constraint
 

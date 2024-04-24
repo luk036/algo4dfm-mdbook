@@ -181,18 +181,22 @@ In practice, you mix and match of them whenever appropriate.
       \text{subject to} & p_i(y) \leq 1, & i=1,\ldots,l  \\
         & g_j(y) = 1, & j=1,\ldots,m  \\
         & y_k > 0,& k=1,\ldots,n ,
-    \end{array}$$ where
-  -   $p_i$'s are posynomial functions and $g_j$'s are monomial functions.
+    \end{array}
   $$
+  where
+  - $p_i$'s are posynomial functions and $g_j$'s are monomial functions.
 
 ## Posynomial and Monomial Functions
 
 - A monomial function is simply:
-  $$g(y_1,\ldots,y_n) = c y_1^{ {\alpha}_{1} } y_2^{ {\alpha}_{2} } \cdots y_n^{ {\alpha}_{n} }, \quad y_k > 0.$$
+  $$
+  g(y) = c y_1^{ {\alpha}_{1} } y_2^{ {\alpha}_{2} } 
+  \cdots y_n^{ {\alpha}_{n} }, \quad y_k > 0.
+  $$
   where
   - $c$ is non-negative and ${\alpha}_{k}\in {\mathbb{R} }$.
 - A posynomial function is a sum of monomial functions:
-  $$p(y_1,\ldots,y_n) = \sum_{s=1}^{T}{c_s y_1^{ {\alpha}_{1,s} } y_2^{ {\alpha}_{2,s} } \cdots y_n^{ {\alpha}_{n,s} }}, \quad y_k > 0 ,$$
+  $$p(y) = \sum_{s=1}^{T}{c_s y_1^{ {\alpha}_{1,s} } y_2^{ {\alpha}_{2,s} } \cdots y_n^{ {\alpha}_{n,s} }}, \quad y_k > 0 ,$$
 - A monomial can also be viewed as a special case of posynomial where there is only one term of the sum.
 
 ## Geometric Programming in Convex Form
@@ -357,7 +361,7 @@ class profit_rb_oracle:
         return self.P(y, t)
 ```
 
-## Oracle in Robust Optimization Formulation
+## 🔮 Oracle in Robust Optimization Formulation
 
 - The oracle only needs to determine:
   - If $f_j(x_0, q) > 0$ for some $j$ and $q = q_0$,
@@ -370,7 +374,7 @@ class profit_rb_oracle:
       $(\partial f_0(x_0, q_0), f_0(x_0, q_0) - t)$
   - Otherwise, $x_0$ is feasible, then
     - Let
-      $q_{\max} = \text{argmax}_{q \in \mathbb Q} f_0(x_0, q)$.
+      $q_{\max} = \argmax_{q \in \mathbb Q} f_0(x_0, q)$.
     - $t := f_0(x_0, q_{\max})$.
     - The cut $(g, \beta)$ =
       $(\partial f_0(x_0, q_{\max}), 0)$
