@@ -111,7 +111,7 @@ gh issue create
 gh search repos digraphx
 ```
 
-## Python
+## 🐍 Python
 
 - Create a new porject
 
@@ -141,7 +141,7 @@ pytest --doctest-modules src
 pytest --cov=src/csdigit
 ```
 
-## Python
+## 🐍 Python
 
 - 🪄 Formatting and static check
 
@@ -193,7 +193,7 @@ Legend:
 <span style="color:green;"></span><span style="font-weight:bold;color:green;">============================== 2 passed in 3.27s ===============================</span>
 ```
 
-## Rust
+## 🦀 Rust
 
 - Create a new project
 
@@ -223,7 +223,7 @@ cargo test --doc
 cargo tarpaulin (Windows)
 ```
 
-## Rust
+## 🦀 Rust
 
 - 🪄 Formatting and static check
 

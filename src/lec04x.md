@@ -687,7 +687,7 @@ practice [@alg:dasdan_mcr; @cherkassky1999negative].
     - the cut $(g, \beta)$ = $(-\partial w_k(x_0), -w_k(x_0))$
   - Otherwise, the shortest path solution gives the value of ${\color{red}u}$.
 
-## Python Code
+## 🐍 Python Code
 
 ```python
 class NetworkOracle:
